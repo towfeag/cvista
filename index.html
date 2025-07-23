@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVista - Create Your Professional CV in Minutes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-document {
+            width: 28px;
+            height: 35px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
+        }
+
+        .logo-document::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+            clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+        }
+
+        .logo-eye {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 16px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 2px #374151;
+        }
+
+        .logo-eye::before {
+            content: 'CV';
+            font-size: 8px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0ea5e9;
+        }
+
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #0ea5e9;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .features {
+            background: #f8fafc;
+            padding: 100px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a202c;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a202c;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .templates {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+            color: white;
+        }
+
+        .templates h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .template-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .template-card:hover {
+            transform: scale(1.05);
+        }
+
+        .template-preview {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .how-it-works {
+            background: #fff;
+            padding: 100px 0;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a202c;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: #0ea5e9;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a202c;
+        }
+
+        .step p {
+            color: #64748b;
+        }
+
+        .final-cta {
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #1a202c;
+            color: #cbd5e0;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #cbd5e0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #0ea5e9;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid,
+            .templates-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #response-message {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  min-width: 250px;
+  max-width: 300px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.4s ease forwards;
+  transition: all 0.4s ease;
+  color: white;
+}
+
+#response-message.success {
+  background-color: #22c55e; /* Green */
+  border-left: 6px solid #16a34a;
+}
+
+#response-message.error {
+  background-color: #ef4444; /* Red */
+  border-left: 6px solid #b91c1c;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-document">
+                        <div class="logo-eye"></div>
+                    </div>
+                </div>
+                CVista
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+<section class="hero">
+    <div class="container">
+        <h1>Create Your Professional CV in Minutes</h1>
+        <p>Build a stunning resume with our easy-to-use builder. Choose from professional templates, customize your content, and download as PDF instantly.</p>
+        <button class="cta-button" onclick="startBuilding()">Get Started for Free</button>
+        <form id="cv-form" method="POST" style="margin-top: 2rem; background: rgba(255,255,255,0.9); padding: 20px; border-radius: 10px; max-width: 600px; margin-left: auto; margin-right: auto; color: #333;display: none;">
+            <h3 style="margin-bottom: 1rem;">CV Submission Form</h3>
+            <label>Full Name:</label><br>
+            <input type="text" name="full_name" required style="width:100%; margin-bottom:1rem;"><br>
+            <label>Email:</label><br>
+            <input type="email" name="email" required style="width:100%; margin-bottom:1rem;"><br>
+            <label>Phone:</label><br>
+            <input type="text" name="phone" required style="width:100%; margin-bottom:1rem;"><br>
+            <label>Template:</label><br>
+            <select name="template" required style="width:100%; margin-bottom:1rem;">
+                <option value="classic">Classic</option>
+                <option value="modern">Modern</option>
+                <option value="creative">Creative</option>
+                <option value="minimalist">Minimalist</option>
+            </select><br>
+            <label>Experience:</label><br>
+            <textarea name="sections[experience]" rows="3" style="width:100%; margin-bottom:1rem;"></textarea><br>
+            <label>Education:</label><br>
+            <textarea name="sections[education]" rows="3" style="width:100%; margin-bottom:1rem;"></textarea><br>
+            <label>Skills:</label><br>
+            <textarea name="sections[skills]" rows="3" style="width:100%; margin-bottom:1rem;"></textarea><br>
+            <button type="submit" class="cta-button">Submit CV</button>
+        </form>
+        <div id="response-message"></div>
+    </div>
+    <form id="pdf-download-form" action="generate_pdf.php" method="POST" style="display: none;" target="_blank">
+    <input type="hidden" name="full_name">
+    <input type="hidden" name="email">
+    <input type="hidden" name="phone">
+    <input type="hidden" name="template">
+    <input type="hidden" name="sections[experience]">
+    <input type="hidden" name="sections[education]">
+    <input type="hidden" name="sections[skills]">
+    </form>
+
+</section>
+
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Why Choose CVista?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Quick & Easy</h3>
+                    <p>Create your professional resume in just a few minutes with our intuitive drag-and-drop builder.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Professional Templates</h3>
+                    <p>Choose from a variety of modern, ATS-friendly templates designed by professionals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>PDF Export</h3>
+                    <p>Download your resume as a high-quality PDF ready for job applications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Your data stays private. We don't store your personal information on our servers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Completely Free</h3>
+                    <p>No hidden fees, no subscriptions. Create unlimited resumes absolutely free.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Build your resume on any device - desktop, tablet, or mobile phone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="templates" id="templates">
+        <div class="container">
+            <h2>Professional Templates</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">Choose from our collection of modern, ATS-friendly resume templates</p>
+            <div class="templates-grid">
+                <div class="template-card">
+                    <div class="template-preview">Classic Template</div>
+                    <h3>Classic</h3>
+                    <p>Clean and professional design perfect for traditional industries.</p>
+                </div>
+                <div class="template-card">
+                    <div class="template-preview">Modern Template</div>
+                    <h3>Modern</h3>
+                    <p>Contemporary layout with bold typography and clean lines.</p>
+                </div>
+                <div class="template-card">
+                    <div class="template-preview">Creative Template</div>
+                    <h3>Creative</h3>
+                    <p>Stand out with this unique design for creative professionals.</p>
+                </div>
+                <div class="template-card">
+                    <div class="template-preview">Minimalist Template</div>
+                    <h3>Minimalist</h3>
+                    <p>Simple and elegant design that focuses on your content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Template</h3>
+                    <p>Select from our collection of professional resume templates that match your style and industry.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Add Your Info</h3>
+                    <p>Fill in your personal details, work experience, education, and skills using our easy form.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Customize</h3>
+                    <p>Personalize colors, fonts, and layout to make your resume uniquely yours.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Download PDF</h3>
+                    <p>Export your finished resume as a high-quality PDF ready for job applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Land Your Dream Job?</h2>
+            <p>Join thousands of professionals who have created their perfect resume with CVista</p>
+            <button class="cta-button" onclick="startBuilding()">Create My Resume Now</button>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CVista</h3>
+                    <p>Create professional resumes in minutes. Free, fast, and privacy-focused.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Create Resume</a>
+                    <a href="#">Templates</a>
+                    <a href="#">Examples</a>
+                    <a href="#">Tips</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="#">Resume Guide</a>
+                    <a href="#">Career Tips</a>
+                    <a href="#">Interview Prep</a>
+                    <a href="#">Job Search</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; CVista. Made with ❤️ for job seekers everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function startBuilding() {
+            // This would typically redirect to the resume builder
+            alert('Welcome to CVista! The resume builder would open here.');
+            showForm();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+
+    function showForm() {
+    const form = document.getElementById('cv-form');
+    form.style.display = 'block';
+
+    // Optionally scroll to it smoothly
+    form.scrollIntoView({ behavior: 'smooth' });
+
+    // Hide the button after showing the form
+    event.target.style.display = 'none';
+    }
+
+    document.getElementById('cv-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const msgBox = document.getElementById('response-message');
+
+  fetch('submit_cv.php', {
+    method: 'POST',
+    body: formData
+  })
+    .then(res => res.json())
+    .then(data => {
+      msgBox.className = '';
+      msgBox.classList.add(data.status === 'success' ? 'success' : 'error');
+      msgBox.textContent = data.message;
+      msgBox.style.display = 'block';
+
+      setTimeout(() => {
+        msgBox.style.display = 'none';
+      }, 4000);
+
+      if (data.status === 'success') {
+        // Fill and submit hidden PDF form
+        const pdfForm = document.getElementById('pdf-download-form');
+        ['full_name', 'email', 'phone', 'template'].forEach(name => {
+          pdfForm.querySelector(`[name="${name}"]`).value = form.querySelector(`[name="${name}"]`).value;
+        });
+
+        ['experience', 'education', 'skills'].forEach(section => {
+          pdfForm.querySelector(`[name="sections[${section}]"]`).value =
+            form.querySelector(`[name="sections[${section}]"]`).value;
+        });
+
+        pdfForm.submit();
+        form.reset();
+      }
+    })
+    .catch(() => {
+      msgBox.className = 'error';
+      msgBox.textContent = 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.';
+      msgBox.style.display = 'block';
+
+      setTimeout(() => {
+        msgBox.style.display = 'none';
+      }, 4000);
+    });
+   });
+
+    </script>
+</body>
+</html>
